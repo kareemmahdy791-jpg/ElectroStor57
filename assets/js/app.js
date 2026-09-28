@@ -5,9 +5,31 @@ const $ = (s, r = document) => r.querySelector(s);
 const fmt = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 }) + ' ' + CONFIG.currency;
 const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 /* Placeholder drawn when a real photo is missing */
-const ph = p => 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#0b1530"/><g stroke="#5b8dff" fill="none" stroke-width="3"><rect x="140" y="130" width="120" height="120" rx="8"/><path d="M170 100v30M200 100v30M230 100v30M170 250v30M200 250v30M230 250v30M110 160h30M110 190h30M110 220h30M260 160h30M260 190h30M260 220h30"/></g><text x="200" y="335" fill="#fff" font-family="sans-serif" font-size="21" text-anchor="middle">${esc(p.name).slice(0, 28)}</text></svg>`);
+/* Illustrated placeholders (used until you add real photos) - one drawing per category */
+const W = 'stroke="#c0c7d1" stroke-width="6"';
+const ART = {
+  board: '<rect x="60" y="90" width="280" height="180" rx="10" fill="#0d7a5f"/><rect x="35" y="150" width="50" height="60" fill="#9aa4b2"/><rect x="160" y="140" width="80" height="80" rx="4" fill="#1b1b1b"/><path d="M80 105h240M80 255h240" stroke="#d4af37" stroke-width="8" stroke-dasharray="6 8"/>',
+  ic: '<rect x="110" y="130" width="180" height="100" rx="6" fill="#1b1b1b"/><circle cx="130" cy="150" r="7" fill="#444"/><path d="M122 116h156M122 244h156" stroke="#c0c7d1" stroke-width="22" stroke-dasharray="10 18"/>',
+  transistor: `<path d="M140 210a60 60 0 0 1 120 0z" fill="#222"/><path d="M165 210v90M200 210v90M235 210v90" ${W}/>`,
+  diode: `<path d="M50 200h300" ${W}/><rect x="140" y="170" width="120" height="60" rx="14" fill="#222"/><rect x="225" y="170" width="20" height="60" fill="#ddd"/>`,
+  capacitor: `<rect x="150" y="90" width="100" height="160" rx="10" fill="#1d4ed8"/><rect x="150" y="90" width="24" height="160" fill="#c0c7d1"/><path d="M175 250v60M225 250v60" ${W}/>`,
+  resistor: `<path d="M40 200h320" ${W}/><rect x="120" y="165" width="160" height="70" rx="30" fill="#d9b382"/><path d="M150 166v68M175 166v68M200 166v68M245 166v68" stroke-width="12"/><path d="M150 166v68" stroke="#7a3e10" stroke-width="12"/><path d="M175 166v68" stroke="#111" stroke-width="12"/><path d="M200 166v68" stroke="#d62828" stroke-width="12"/><path d="M245 166v68" stroke="#d4af37" stroke-width="12"/>`,
+  pot: `<circle cx="200" cy="170" r="80" fill="#2b3a55"/><circle cx="200" cy="170" r="52" fill="#0f172a"/><path d="M200 170l28-34" stroke="#5b8dff" stroke-width="9" stroke-linecap="round"/><path d="M150 250v55M200 250v55M250 250v55" ${W}/>`,
+  led: `<path d="M150 200v-50a50 50 0 0 1 100 0v50z" fill="#ef4444" fill-opacity=".9"/><rect x="138" y="200" width="124" height="14" fill="#ef4444"/><path d="M180 214v90M220 214v70" ${W}/>`,
+  breadboard: '<rect x="60" y="100" width="280" height="180" rx="8" fill="#f1f5f9"/><path d="M80 140h240M80 165h240M80 215h240M80 240h240" stroke="#334155" stroke-width="10" stroke-dasharray="4 10"/><path d="M60 190h280" stroke="#cbd5e1" stroke-width="6"/>',
+  wire: '<path d="M60 280c60-200 120 120 180-60s80-80 100-120" stroke="#ef4444" stroke-width="10" fill="none"/><path d="M60 300c80-140 140 80 200-20s60-60 80-90" stroke="#22c55e" stroke-width="10" fill="none"/>',
+  display: '<rect x="70" y="110" width="260" height="150" rx="10" fill="#1e3a8a"/><rect x="90" y="130" width="220" height="110" fill="#0ea5e9"/><path d="M105 165h120M105 200h80" stroke="#fff" stroke-width="10"/>',
+  relay: `<rect x="110" y="110" width="180" height="150" rx="8" fill="#1d4ed8"/><rect x="135" y="135" width="60" height="40" fill="#0b1530"/><path d="M140 260v40M200 260v40M260 260v40" ${W}/>`,
+  motor: '<rect x="120" y="120" width="140" height="120" rx="10" fill="#94a3b8"/><rect x="260" y="170" width="70" height="20" fill="#e2e8f0"/><rect x="100" y="140" width="20" height="80" fill="#475569"/>',
+  power: '<rect x="90" y="120" width="180" height="140" rx="12" fill="#111827" stroke="#5b8dff" stroke-width="4"/><path d="M270 190h60" stroke="#c0c7d1" stroke-width="10"/><path d="M190 150l-25 45h35l-20 45" stroke="#fbbf24" stroke-width="8" fill="none"/>',
+  battery: '<rect x="90" y="140" width="200" height="100" rx="10" fill="#16a34a"/><rect x="290" y="170" width="24" height="40" fill="#c0c7d1"/><path d="M160 190h50M185 165v50" stroke="#fff" stroke-width="8"/>',
+  pcb: '<rect x="70" y="100" width="260" height="180" rx="6" fill="#0d7a5f"/><path d="M90 130h220M90 160h220M90 190h220M90 220h220M90 250h220" stroke="#d4af37" stroke-width="8" stroke-dasharray="3 14"/>',
+  tool: '<rect x="130" y="70" width="140" height="240" rx="14" fill="#f59e0b"/><rect x="150" y="90" width="100" height="50" fill="#a7f3d0"/><circle cx="200" cy="215" r="42" fill="#111"/><path d="M200 215l20-20" stroke="#fff" stroke-width="6"/>'
+};
+const ART_OF = { arduino: 'board', esp32: 'board', 'raspberry-pi': 'board', sensors: 'board', modules: 'board', ics: 'ic', 'logic-gates': 'ic', transistors: 'transistor', mosfets: 'transistor', diodes: 'diode', capacitors: 'capacitor', resistors: 'resistor', potentiometers: 'pot', leds: 'led', breadboards: 'breadboard', 'jumper-wires': 'wire', 'wires-cables': 'wire', displays: 'display', relays: 'relay', motors: 'motor', 'power-supplies': 'power', batteries: 'battery', pcbs: 'pcb', tools: 'tool' };
+const ph = p => 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#0b1530"/>${ART[ART_OF[CATEGORIES.find(c => c.id === p.cat).slug]] || ART.board}<text x="200" y="352" fill="#fff" font-family="sans-serif" font-size="21" text-anchor="middle">${esc(p.name).slice(0, 28)}</text></svg>`);
 function imgFail(el) { el.onerror = null; el.src = ph(PRODUCTS.find(x => x.id == el.dataset.id)); }
-const imgTag = p => `<img src="assets/images/products/${p.slug}.jpg" alt="${p.name}" loading="lazy" data-id="${p.id}" onerror="imgFail(this)">`;
+const imgTag = p => `<img src="${p.img || 'assets/images/products/' + p.slug + '.jpg'}" alt="${p.name}" loading="lazy" data-id="${p.id}" onerror="imgFail(this)">`;
 const catName = id => CATEGORIES.find(c => c.id === id).name;
 const stockInfo = s => s <= 0 ? ['Out of Stock', 'out-of-stock'] : s <= 5 ? ['Low Stock', 'low-stock'] : ['In Stock', 'in-stock'];
 const page = document.body.dataset.page;
