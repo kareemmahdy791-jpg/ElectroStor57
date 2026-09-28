@@ -1,4 +1,6 @@
 /* app.js - all site logic (cart in localStorage, page rendering, WhatsApp orders) */
+/* Safety net: if config.js failed to load, use defaults so the site still works */
+if (typeof CONFIG === 'undefined') window.CONFIG = { name: 'ElectroStore', currency: 'EGP', whatsapp: '201000000000', email: 'support@electrostore.example', facebook: 'https://facebook.com/electrostore' };
 const $ = (s, r = document) => r.querySelector(s);
 const fmt = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 }) + ' ' + CONFIG.currency;
 const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
@@ -170,5 +172,10 @@ function initContact() {
   };
 }
 
-renderLayout();
-({ home: initHome, shop: initShop, cart: initCart, checkout: initCheckout, contact: initContact })[page]?.();
+try {
+  renderLayout();
+  ({ home: initHome, shop: initShop, cart: initCart, checkout: initCheckout, contact: initContact })[page]?.();
+} catch (err) {
+  console.error(err);
+  document.body.insertAdjacentHTML('afterbegin', '<div style="background:#fbe7e7;color:#b91c1c;padding:14px;font:14px sans-serif">Site error: ' + err.message + ' - make sure assets/js/config.js and assets/js/products.js were uploaded.</div>');
+}
