@@ -819,3 +819,10 @@ body.admin-body { background: var(--ice); }
 }
 .toast.show { transform: translateY(0); opacity: 1; }
 .toast .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-400); }
+
+/* ---- Variant selectors (resistance / color / size) & real photos ---- */
+.variant-label { font-size: .72rem; color: var(--slate-500); font-family: var(--font-mono); text-transform: uppercase; }
+select.variant { width: 100%; padding: 8px 10px; border: 1px solid var(--slate-300); border-radius: var(--radius-sm); font-size: .85rem; background: #fff; }
+.price-unit { font-size: .7rem; color: var(--slate-500); font-weight: 400; }
+.product-thumb { background: #fff; }
+.product-thumb img { object-fit: contain; }

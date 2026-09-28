@@ -1,0 +1,209 @@
+Put a photo for each product in assets/images/products/ using EXACTLY these file names (.jpg):
+
+## Arduino
+arduino-uno-r3-ch340-clone.jpg   <- Arduino Uno R3 (CH340 clone)
+arduino-uno-r3-original.jpg   <- Arduino Uno R3 Original
+arduino-nano-v3-ch340.jpg   <- Arduino Nano V3 (CH340)
+arduino-mega-2560-clone.jpg   <- Arduino Mega 2560 (clone)
+arduino-pro-mini-5v.jpg   <- Arduino Pro Mini 5V
+
+## ESP32
+esp32-devkit-v1-38-pin.jpg   <- ESP32 DevKit V1 (38-pin)
+esp32-cam-with-ov2640.jpg   <- ESP32-CAM with OV2640
+esp8266-nodemcu-v3.jpg   <- ESP8266 NodeMCU V3
+esp-01-esp8266-module.jpg   <- ESP-01 ESP8266 Module
+esp32-s3-devkit.jpg   <- ESP32-S3 DevKit
+
+## Raspberry Pi
+raspberry-pi-4-model-b-4gb.jpg   <- Raspberry Pi 4 Model B (4GB)
+raspberry-pi-pico.jpg   <- Raspberry Pi Pico
+raspberry-pi-pico-w.jpg   <- Raspberry Pi Pico W
+
+## Sensors
+dht22-temperature-humidity.jpg   <- DHT22 Temperature & Humidity
+dht11-temperature-humidity.jpg   <- DHT11 Temperature & Humidity
+hc-sr04-ultrasonic-sensor.jpg   <- HC-SR04 Ultrasonic Sensor
+pir-motion-sensor-hc-sr501.jpg   <- PIR Motion Sensor HC-SR501
+soil-moisture-sensor.jpg   <- Soil Moisture Sensor
+mq-2-gas-sensor.jpg   <- MQ-2 Gas Sensor
+mpu6050-gyro-accelerometer.jpg   <- MPU6050 Gyro + Accelerometer
+ds18b20-waterproof-temp-probe.jpg   <- DS18B20 Waterproof Temp Probe
+ldr-light-sensor-module.jpg   <- LDR Light Sensor Module
+
+## Modules
+hc-05-bluetooth-module.jpg   <- HC-05 Bluetooth Module
+l298n-motor-driver.jpg   <- L298N Motor Driver
+rfid-rc522-kit.jpg   <- RFID RC522 Kit
+neo-6m-gps-module.jpg   <- NEO-6M GPS Module
+nrf24l01-wireless-module.jpg   <- nRF24L01 Wireless Module
+ds3231-rtc-module.jpg   <- DS3231 RTC Module
+lm2596-buck-converter.jpg   <- LM2596 Buck Converter
+tp4056-charger-module.jpg   <- TP4056 Charger Module
+micro-sd-card-module.jpg   <- Micro SD Card Module
+hx711-load-cell-amplifier.jpg   <- HX711 Load Cell Amplifier
+
+## ICs
+atmega328p-pu-dip.jpg   <- ATmega328P-PU (DIP)
+ne555-timer.jpg   <- NE555 Timer
+lm358-dual-op-amp.jpg   <- LM358 Dual Op-Amp
+lm324-quad-op-amp.jpg   <- LM324 Quad Op-Amp
+lm741-op-amp.jpg   <- LM741 Op-Amp
+lm7805-5v-regulator.jpg   <- LM7805 5V Regulator
+lm7812-12v-regulator.jpg   <- LM7812 12V Regulator
+lm317-adjustable-regulator.jpg   <- LM317 Adjustable Regulator
+l293d-motor-driver-ic.jpg   <- L293D Motor Driver IC
+uln2003-darlington-array.jpg   <- ULN2003 Darlington Array
+lm386-audio-amplifier.jpg   <- LM386 Audio Amplifier
+pc817-optocoupler.jpg   <- PC817 Optocoupler
+ic-socket-dip.jpg   <- IC Socket DIP
+
+## Logic Gates
+74hc00-quad-nand-gate.jpg   <- 74HC00 Quad NAND Gate
+74hc02-quad-nor-gate.jpg   <- 74HC02 Quad NOR Gate
+74hc04-hex-not-gate.jpg   <- 74HC04 Hex NOT Gate
+74hc08-quad-and-gate.jpg   <- 74HC08 Quad AND Gate
+74hc32-quad-or-gate.jpg   <- 74HC32 Quad OR Gate
+74hc86-quad-xor-gate.jpg   <- 74HC86 Quad XOR Gate
+74hc74-dual-d-flip-flop.jpg   <- 74HC74 Dual D Flip-Flop
+74hc138-3-to-8-decoder.jpg   <- 74HC138 3-to-8 Decoder
+74hc595-shift-register.jpg   <- 74HC595 Shift Register
+cd4017-decade-counter.jpg   <- CD4017 Decade Counter
+cd4011-quad-nand-cmos.jpg   <- CD4011 Quad NAND (CMOS)
+
+## Transistors
+2n2222-npn.jpg   <- 2N2222 NPN
+2n3904-npn.jpg   <- 2N3904 NPN
+2n3906-pnp.jpg   <- 2N3906 PNP
+bc547-npn.jpg   <- BC547 NPN
+bc557-pnp.jpg   <- BC557 PNP
+tip122-npn-darlington.jpg   <- TIP122 NPN Darlington
+2n3055-npn-power.jpg   <- 2N3055 NPN Power
+
+## MOSFETs
+irf540n-n-channel.jpg   <- IRF540N N-Channel
+irfz44n-n-channel.jpg   <- IRFZ44N N-Channel
+irf9540-p-channel.jpg   <- IRF9540 P-Channel
+irlz44n-logic-level.jpg   <- IRLZ44N Logic-Level
+2n7000-small-mosfet.jpg   <- 2N7000 Small MOSFET
+irf3205-n-channel.jpg   <- IRF3205 N-Channel
+
+## Diodes
+1n4007-rectifier.jpg   <- 1N4007 Rectifier
+1n4148-signal-diode.jpg   <- 1N4148 Signal Diode
+1n5819-schottky.jpg   <- 1N5819 Schottky
+zener-diode-0-5w.jpg   <- Zener Diode 0.5W
+db107-bridge-rectifier.jpg   <- DB107 Bridge Rectifier
+
+## Capacitors
+ceramic-capacitor.jpg   <- Ceramic Capacitor
+electrolytic-capacitor-50v.jpg   <- Electrolytic Capacitor 50V
+polyester-film-capacitor-100nf.jpg   <- Polyester Film Capacitor 100nF
+ceramic-capacitor-kit-300pcs.jpg   <- Ceramic Capacitor Kit (300pcs)
+electrolytic-capacitor-kit-120pcs.jpg   <- Electrolytic Capacitor Kit (120pcs)
+super-capacitor-5-5v-1f.jpg   <- Super Capacitor 5.5V 1F
+
+## Resistors
+resistor-1-4w-choose-value.jpg   <- Resistor 1/4W (choose value)
+resistor-1-2w-choose-value.jpg   <- Resistor 1/2W (choose value)
+resistor-1w-choose-value.jpg   <- Resistor 1W (choose value)
+wire-wound-resistor-5w.jpg   <- Wire-Wound Resistor 5W
+resistor-kit-600pcs-30-values.jpg   <- Resistor Kit (600pcs, 30 values)
+photoresistor-ldr-5mm.jpg   <- Photoresistor LDR 5mm
+
+## Potentiometers
+rotary-potentiometer.jpg   <- Rotary Potentiometer
+multi-turn-trimmer-3296.jpg   <- Multi-Turn Trimmer 3296
+preset-trimmer-blue.jpg   <- Preset Trimmer (Blue)
+slide-potentiometer.jpg   <- Slide Potentiometer
+potentiometer-knob-cap.jpg   <- Potentiometer Knob Cap
+
+## LEDs
+led-5mm.jpg   <- LED 5mm
+led-3mm.jpg   <- LED 3mm
+led-10mm.jpg   <- LED 10mm
+rgb-led-5mm-common-cathode.jpg   <- RGB LED 5mm (Common Cathode)
+ws2812b-led-strip-1m.jpg   <- WS2812B LED Strip 1m
+led-assorted-kit-100pcs.jpg   <- LED Assorted Kit (100pcs)
+ir-led-5mm.jpg   <- IR LED 5mm
+
+## Breadboards
+breadboard-830-points.jpg   <- Breadboard 830 Points
+breadboard-400-points.jpg   <- Breadboard 400 Points
+mini-breadboard-170-points.jpg   <- Mini Breadboard 170 Points
+
+## Jumper Wires
+dupont-jumper-set-120pcs.jpg   <- Dupont Jumper Set (120pcs)
+male-male-jumper-wires-40pcs.jpg   <- Male-Male Jumper Wires (40pcs)
+male-female-jumper-wires-40pcs.jpg   <- Male-Female Jumper Wires (40pcs)
+female-female-jumper-wires-40pcs.jpg   <- Female-Female Jumper Wires (40pcs)
+
+## Wires & Cables
+hookup-wire-22awg-solid.jpg   <- Hookup Wire 22AWG Solid
+silicone-wire-22awg-flexible.jpg   <- Silicone Wire 22AWG Flexible
+usb-cable-type-b-arduino-uno.jpg   <- USB Cable Type-B (Arduino Uno)
+usb-micro-cable.jpg   <- USB Micro Cable
+heat-shrink-tubing-kit.jpg   <- Heat Shrink Tubing Kit
+dc-power-jack-cable-5-5x2-1mm.jpg   <- DC Power Jack Cable 5.5x2.1mm
+
+## Displays
+16x2-lcd-display.jpg   <- 16x2 LCD Display
+16x2-lcd-with-i2c-module.jpg   <- 16x2 LCD with I2C Module
+oled-0-96-i2c.jpg   <- OLED 0.96" I2C
+7-segment-display.jpg   <- 7-Segment Display
+8x8-led-matrix-max7219.jpg   <- 8x8 LED Matrix MAX7219
+1-8-tft-display.jpg   <- 1.8" TFT Display
+
+## Relays
+relay-module-4-channel.jpg   <- Relay Module 4-Channel
+relay-module-1-channel-5v.jpg   <- Relay Module 1-Channel 5V
+relay-module-8-channel.jpg   <- Relay Module 8-Channel
+srd-05vdc-relay.jpg   <- SRD-05VDC Relay
+solid-state-relay-ssr-25da.jpg   <- Solid State Relay SSR-25DA
+
+## Motors
+servo-motor-sg90.jpg   <- Servo Motor SG90
+servo-motor-mg996r.jpg   <- Servo Motor MG996R
+dc-gear-motor-tt-with-wheel.jpg   <- DC Gear Motor TT with Wheel
+stepper-28byj-48-uln2003.jpg   <- Stepper 28BYJ-48 + ULN2003
+nema-17-stepper-motor.jpg   <- NEMA 17 Stepper Motor
+mini-water-pump-3-6v.jpg   <- Mini Water Pump 3-6V
+
+## Power Supplies
+12v-2a-adapter.jpg   <- 12V 2A Adapter
+5v-2a-adapter.jpg   <- 5V 2A Adapter
+9v-1a-adapter.jpg   <- 9V 1A Adapter
+breadboard-power-supply-module.jpg   <- Breadboard Power Supply Module
+xl6009-boost-converter.jpg   <- XL6009 Boost Converter
+
+## Batteries
+18650-li-ion-3-7v.jpg   <- 18650 Li-ion 3.7V
+9v-battery.jpg   <- 9V Battery
+aa-alkaline-4-pack.jpg   <- AA Alkaline (4-pack)
+cr2032-coin-cell.jpg   <- CR2032 Coin Cell
+18650-holder-1-slot.jpg   <- 18650 Holder 1-Slot
+18650-holder-4-slot.jpg   <- 18650 Holder 4-Slot
+li-po-3-7v-1000mah.jpg   <- Li-Po 3.7V 1000mAh
+9v-battery-clip.jpg   <- 9V Battery Clip
+
+## PCBs
+perfboard-double-sided.jpg   <- Perfboard Double-Sided
+copper-clad-board-single-sided.jpg   <- Copper Clad Board (Single-Sided)
+ferric-chloride-etchant.jpg   <- Ferric Chloride Etchant
+header-pins-male-40-pin.jpg   <- Header Pins Male 40-pin
+header-pins-female-40-pin.jpg   <- Header Pins Female 40-pin
+screw-terminal-block-2-pin.jpg   <- Screw Terminal Block 2-pin
+arduino-uno-proto-shield-pcb.jpg   <- Arduino UNO Proto Shield PCB
+
+## Tools
+digital-multimeter-dt830b.jpg   <- Digital Multimeter DT830B
+digital-multimeter-dt9205a.jpg   <- Digital Multimeter DT9205A
+soldering-iron-60w-adjustable.jpg   <- Soldering Iron 60W Adjustable
+solder-wire-50g.jpg   <- Solder Wire 50g
+solder-flux-paste.jpg   <- Solder Flux Paste
+desoldering-pump.jpg   <- Desoldering Pump
+wire-stripper-cutter.jpg   <- Wire Stripper & Cutter
+side-cutter-pliers.jpg   <- Side Cutter Pliers
+precision-tweezers-set.jpg   <- Precision Tweezers Set
+precision-screwdriver-set.jpg   <- Precision Screwdriver Set
+helping-hands-stand.jpg   <- Helping Hands Stand
+

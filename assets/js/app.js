@@ -1,6 +1,11 @@
 /* app.js - all site logic (cart in localStorage, page rendering, WhatsApp orders) */
 const $ = (s, r = document) => r.querySelector(s);
-const fmt = n => Math.round(n).toLocaleString('en-US') + ' ' + CONFIG.currency;
+const fmt = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 }) + ' ' + CONFIG.currency;
+const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+/* Placeholder drawn when a real photo is missing */
+const ph = p => 'data:image/svg+xml;utf8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#0b1530"/><g stroke="#5b8dff" fill="none" stroke-width="3"><rect x="140" y="130" width="120" height="120" rx="8"/><path d="M170 100v30M200 100v30M230 100v30M170 250v30M200 250v30M230 250v30M110 160h30M110 190h30M110 220h30M260 160h30M260 190h30M260 220h30"/></g><text x="200" y="335" fill="#fff" font-family="sans-serif" font-size="21" text-anchor="middle">${esc(p.name).slice(0, 28)}</text></svg>`);
+function imgFail(el) { el.onerror = null; el.src = ph(PRODUCTS.find(x => x.id == el.dataset.id)); }
+const imgTag = p => `<img src="assets/images/products/${p.slug}.jpg" alt="${p.name}" loading="lazy" data-id="${p.id}" onerror="imgFail(this)">`;
 const catName = id => CATEGORIES.find(c => c.id === id).name;
 const stockInfo = s => s <= 0 ? ['Out of Stock', 'out-of-stock'] : s <= 5 ? ['Low Stock', 'low-stock'] : ['In Stock', 'in-stock'];
 const page = document.body.dataset.page;
@@ -13,7 +18,7 @@ const cart = {
   set(id, q) { const c = this.get(); q <= 0 ? delete c[id] : c[id] = q; this.save(c); },
   clear() { this.save({}); },
   count() { return Object.values(this.get()).reduce((a, b) => a + b, 0); },
-  items() { const c = this.get(); return PRODUCTS.filter(p => c[p.id]).map(p => ({ ...p, qty: c[p.id], subtotal: c[p.id] * p.price })); },
+  items() { const c = this.get(); return Object.keys(c).map(k => { const [id, v] = k.split('|'); const p = PRODUCTS.find(x => x.id == id); return p && { ...p, key: k, variant: v || '', label: p.name + (v ? ' (' + v + ')' : ''), qty: c[k], subtotal: c[k] * p.price }; }).filter(Boolean); },
   total() { return this.items().reduce((a, i) => a + i.subtotal, 0); }
 };
 function updateBadge() { const b = $('#cart-badge'); if (b) b.textContent = cart.count(); }
@@ -60,12 +65,13 @@ function card(p) {
   const [label, cls] = stockInfo(p.stock);
   return `<div class="product-card" data-id="${p.id}">
     ${p.featured ? '<span class="badge-featured">FEATURED</span>' : ''}
-    <div class="product-thumb"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+    <div class="product-thumb">${imgTag(p)}</div>
     <div class="product-body">
       <span class="product-cat-tag">${catName(p.cat)}</span>
       <span class="product-name">${p.name}</span>
       <p class="product-desc">${p.desc}</p>
-      <div class="product-meta"><span class="product-price">${fmt(p.price)}</span><span class="stock-tag ${cls}">${label}</span></div>
+      <div class="product-meta"><span class="product-price">${fmt(p.price)}${p.unit ? '<small class="price-unit"> / ' + p.unit + '</small>' : ''}</span><span class="stock-tag ${cls}">${label}</span></div>
+      ${p.opts ? `<label class="variant-label">${p.optLabel}</label><select class="variant">${p.opts.map(o => `<option>${o}</option>`).join('')}</select>` : ''}
       <div class="qty-selector"><button type="button" data-act="minus">&minus;</button><input type="text" value="1" data-max="${p.stock}" inputmode="numeric"><button type="button" data-act="plus">&plus;</button></div>
       <div class="product-actions"><button type="button" class="add-to-cart-btn" data-act="add" ${p.stock <= 0 ? 'disabled' : ''}>${p.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}</button></div>
     </div></div>`;
@@ -77,7 +83,7 @@ function bindCards(root) {
     const el = b.closest('.product-card'), input = $('input', el), max = +input.dataset.max || 99;
     if (b.dataset.act === 'minus') input.value = Math.max(1, (+input.value || 1) - 1);
     if (b.dataset.act === 'plus') input.value = Math.min(max, (+input.value || 1) + 1);
-    if (b.dataset.act === 'add') { cart.add(+el.dataset.id, Math.min(max, Math.max(1, +input.value || 1))); toast('Added to cart'); }
+    if (b.dataset.act === 'add') { const v = $('.variant', el); cart.add(el.dataset.id + (v ? '|' + v.value : ''), Math.min(max, Math.max(1, +input.value || 1))); toast('Added to cart'); }
   });
 }
 
@@ -115,7 +121,7 @@ function initCart() {
     const items = cart.items();
     if (!items.length) { box.innerHTML = '<div class="empty-state"><h3>Your cart is empty</h3><p>Add some components to get started.</p><br><a href="products.html" class="btn btn-primary">Browse Products</a></div>'; return; }
     box.innerHTML = `<div class="cart-layout"><div class="data-table-wrap"><table class="cart-table"><thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Subtotal</th><th></th></tr></thead><tbody>
-      ${items.map(i => `<tr data-id="${i.id}"><td><div class="cart-product"><img src="${i.img}" alt=""><span class="cart-product-name">${i.name}</span></div></td>
+      ${items.map(i => `<tr data-key="${i.key}"><td><div class="cart-product">${imgTag(i)}<span class="cart-product-name">${i.label}</span></div></td>
       <td class="cart-price">${fmt(i.price)}</td>
       <td><div class="qty-selector"><button data-act="minus">&minus;</button><input type="text" value="${i.qty}" data-max="${i.stock}"><button data-act="plus">&plus;</button></div></td>
       <td class="cart-subtotal">${fmt(i.subtotal)}</td><td><button class="cart-remove-btn" data-act="remove">Remove</button></td></tr>`).join('')}
@@ -127,13 +133,13 @@ function initCart() {
   }
   box.addEventListener('click', e => {
     const b = e.target.closest('[data-act]'); if (!b) return;
-    const tr = b.closest('tr'), id = +tr.dataset.id, input = $('input', tr), max = +input.dataset.max || 99;
+    const tr = b.closest('tr'), id = tr.dataset.key, input = $('input', tr), max = +input.dataset.max || 99;
     if (b.dataset.act === 'remove') cart.set(id, 0);
     if (b.dataset.act === 'minus') cart.set(id, (+input.value || 1) - 1 || 1);
     if (b.dataset.act === 'plus') cart.set(id, Math.min(max, (+input.value || 1) + 1));
     draw();
   });
-  box.addEventListener('change', e => { if (e.target.matches('input')) { const tr = e.target.closest('tr'); cart.set(+tr.dataset.id, Math.min(+e.target.dataset.max || 99, Math.max(1, +e.target.value || 1))); draw(); } });
+  box.addEventListener('change', e => { if (e.target.matches('input')) { const tr = e.target.closest('tr'); cart.set(tr.dataset.key, Math.min(+e.target.dataset.max || 99, Math.max(1, +e.target.value || 1))); draw(); } });
   draw();
 }
 
@@ -141,12 +147,12 @@ function initCart() {
 function initCheckout() {
   const items = cart.items();
   if (!items.length) { $('#checkout-content').innerHTML = '<div class="empty-state"><h3>Your cart is empty</h3><br><a href="products.html" class="btn btn-primary">Browse Products</a></div>'; return; }
-  $('#review').innerHTML = items.map(i => `<div class="order-review-item"><span class="name">${i.name} &times; ${i.qty}</span><span class="val">${fmt(i.subtotal)}</span></div>`).join('') +
+  $('#review').innerHTML = items.map(i => `<div class="order-review-item"><span class="name">${i.label} &times; ${i.qty}</span><span class="val">${fmt(i.subtotal)}</span></div>`).join('') +
     `<div class="summary-row total" style="margin-top:14px"><span>Total</span><span>${fmt(cart.total())}</span></div>`;
   $('#order-form').onsubmit = e => {
     e.preventDefault();
     const d = Object.fromEntries(new FormData(e.target));
-    const lines = items.map(i => `- ${i.name} x${i.qty} = ${fmt(i.subtotal)}`).join('\n');
+    const lines = items.map(i => `- ${i.label} x${i.qty} = ${fmt(i.subtotal)}`).join('\n');
     const msg = `*New Order - ${CONFIG.name}*\n\n*Name:* ${d.full_name}\n*Phone:* ${d.phone}\n*WhatsApp:* ${d.whatsapp}\n*Faculty:* ${d.faculty}\n*Department:* ${d.department}\n*City:* ${d.city}\n*Address:* ${d.address}\n*Notes:* ${d.notes || '-'}\n\n*Products:*\n${lines}\n\n*Total:* ${fmt(cart.total())}`;
     window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
     cart.clear();
