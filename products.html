@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - ElectroStore</title>
+<meta name="description" content="Arduino, ESP32, Raspberry Pi, sensors and electronic components for university students in Egypt.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="shop">
+<div id="site-header"></div>
+<div class="page-header"><div class="container"><h1 id="page-title">All Products</h1><p class="breadcrumb"><a href="index.html">Home</a> / Shop</p></div></div>
+<section class="section"><div class="container">
+  <form action="products.html" method="GET" class="search-box" style="margin-bottom:28px">
+    <input type="text" name="q" id="q" placeholder="Search products..."><button type="submit">Search</button>
+  </form>
+  <div class="shop-layout">
+    <aside class="filter-box"><h4>Categories</h4><ul id="side-cats"></ul></aside>
+    <div>
+      <div class="toolbar"><span class="result-count" id="result-count"></span>
+        <select id="sort"><option value="newest">Newest</option><option value="price_asc">Price: Low to High</option><option value="price_desc">Price: High to Low</option></select></div>
+      <div class="product-grid" id="shop-grid"></div>
+    </div>
+  </div>
+</div></section>
+<div id="site-footer"></div>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

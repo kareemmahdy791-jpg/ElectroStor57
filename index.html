@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - ElectroStore</title>
+<meta name="description" content="Arduino, ESP32, Raspberry Pi, sensors and electronic components for university students in Egypt.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+<section class="hero"><div class="container hero-grid"><div>
+  <span class="hero-eyebrow"><span class="dot"></span> CAMPUS DELIVERY ACROSS EGYPT</span>
+  <h1>Electronic parts for your next <span class="accent">graduation project.</span></h1>
+  <p>Arduino boards, sensors, modules, and every passive component you need, priced for students.</p>
+  <div class="hero-cta"><a href="products.html" class="btn btn-primary">Browse All Products</a>
+  <a href="#categories" class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:#fff">Explore Categories</a></div>
+  <div class="hero-stats"><div><strong>50+</strong><span>Components</span></div><div><strong>20</strong><span>Categories</span></div><div><strong>24h</strong><span>Campus delivery</span></div></div>
+</div></div></section>
+<div class="container search-bar">
+  <form action="products.html" method="GET" class="search-box">
+    <input type="text" name="q" placeholder="Search for Arduino Uno, DHT22, resistors...">
+    <select name="category" id="search-cat"><option value="">All Categories</option></select>
+    <button type="submit">Search</button>
+  </form>
+</div>
+<section class="section" id="categories"><div class="container">
+  <h2 class="section-title">Shop by Category</h2><p class="section-sub">20 categories from microcontrollers to passive components.</p>
+  <div class="category-grid" id="categories-grid"></div>
+</div></section>
+<section class="section" style="background:var(--white)"><div class="container">
+  <h2 class="section-title">Featured Products</h2><p class="section-sub">Popular picks among students this semester.</p>
+  <div class="product-grid" id="featured-grid"></div>
+  <div style="text-align:center;margin-top:34px"><a href="products.html" class="btn btn-dark">View All Products</a></div>
+</div></section>
+<div id="site-footer"></div>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

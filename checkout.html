@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - ElectroStore</title>
+<meta name="description" content="Arduino, ESP32, Raspberry Pi, sensors and electronic components for university students in Egypt.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="checkout">
+<div id="site-header"></div>
+<div class="page-header"><div class="container"><h1>Checkout</h1><p class="breadcrumb"><a href="index.html">Home</a> / Checkout</p></div></div>
+<section class="section"><div class="container" id="checkout-content"><div class="checkout-layout">
+  <div class="form-card"><h3 style="margin-bottom:20px">Delivery Information</h3>
+  <form id="order-form"><div class="form-grid">
+    <div class="form-group"><label>Full Name</label><input name="full_name" required></div>
+    <div class="form-group"><label>Phone Number</label><input name="phone" type="tel" required placeholder="01xxxxxxxxx"></div>
+    <div class="form-group"><label>WhatsApp Number</label><input name="whatsapp" type="tel" required placeholder="01xxxxxxxxx"></div>
+    <div class="form-group"><label>City</label><input name="city" required></div>
+    <div class="form-group"><label>Faculty</label><input name="faculty" required placeholder="e.g. Faculty of Engineering"></div>
+    <div class="form-group"><label>Department</label><input name="department" required></div>
+    <div class="form-group full"><label>Detailed Address</label><input name="address" required placeholder="Building, street, dorm name..."></div>
+    <div class="form-group full"><label>Notes (optional)</label><textarea name="notes"></textarea></div>
+  </div><button type="submit" class="btn btn-primary btn-block">Place Order via WhatsApp</button></form></div>
+  <div class="summary-box"><h3>Order Review</h3><div id="review"></div>
+  <p style="font-size:.78rem;color:var(--slate-500);margin-top:14px">Payment is Cash on Delivery. Your order is sent to us on WhatsApp for confirmation.</p></div>
+</div></div></section>
+<div id="site-footer"></div>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
