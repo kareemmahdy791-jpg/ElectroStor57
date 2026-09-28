@@ -1,6 +1,6 @@
 /* products.js - store settings + product data.
    Edit CONFIG for your real details. Replace 'img' URLs with your own photos. */
-const CONFIG = { name: 'ElectroStore', currency: 'EGP', whatsapp: '201000000000', email: 'support@electrostore.example', facebook: 'https://facebook.com/electrostore' };
+const CONFIG = { name: 'ElectroStore', currency: 'EGP', whatsapp: '201157570877', email: 'support@electrostore.example', facebook: 'https://facebook.com/electrostore' };
 const CATEGORIES = [{"id": 1, "name": "Arduino", "slug": "arduino"}, {"id": 2, "name": "ESP32", "slug": "esp32"}, {"id": 3, "name": "Raspberry Pi", "slug": "raspberry-pi"}, {"id": 4, "name": "Sensors", "slug": "sensors"}, {"id": 5, "name": "Modules", "slug": "modules"}, {"id": 6, "name": "ICs", "slug": "ics"}, {"id": 7, "name": "Transistors", "slug": "transistors"}, {"id": 8, "name": "MOSFETs", "slug": "mosfets"}, {"id": 9, "name": "Diodes", "slug": "diodes"}, {"id": 10, "name": "Capacitors", "slug": "capacitors"}, {"id": 11, "name": "Resistors", "slug": "resistors"}, {"id": 12, "name": "LEDs", "slug": "leds"}, {"id": 13, "name": "Breadboards", "slug": "breadboards"}, {"id": 14, "name": "Jumper Wires", "slug": "jumper-wires"}, {"id": 15, "name": "Displays", "slug": "displays"}, {"id": 16, "name": "Relays", "slug": "relays"}, {"id": 17, "name": "Motors", "slug": "motors"}, {"id": 18, "name": "Power Supplies", "slug": "power-supplies"}, {"id": 19, "name": "Batteries", "slug": "batteries"}, {"id": 20, "name": "Tools", "slug": "tools"}];
 const PRODUCTS = [
 {
